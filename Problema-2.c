@@ -13,6 +13,11 @@ typedef struct {
 } Cuvant;
 
 
+/**
+ *
+ * @param cuvinte
+ * @param lungimeVector
+ */
 void afisare(Cuvant *cuvinte, int *lungimeVector){
     if (cuvinte != NULL)
         for (int i = 0; i < (*lungimeVector); i++) {
@@ -20,6 +25,12 @@ void afisare(Cuvant *cuvinte, int *lungimeVector){
         }
 }
 
+
+/**
+ *
+ * @param lungimeVector
+ * @return
+ */
 Cuvant *procesareText(int *lungimeVector) {
     FILE *in = fopen("..//cuvinte.txt", "r");
     if (in == NULL) {
@@ -67,12 +78,18 @@ Cuvant *procesareText(int *lungimeVector) {
         }
     }
 
+    fclose(in);
     afisare(cuvinte, lungimeVector);
 
     return cuvinte;
 }
 
-
+/**
+ *
+ * @param p
+ * @param q
+ * @return
+ */
 int cmp(const void *p, const void *q) {
     Cuvant firstWord = *(Cuvant *) p;
     Cuvant secondWord = *(Cuvant *) q;
@@ -83,10 +100,11 @@ int cmp(const void *p, const void *q) {
     else return strcmp(firstWord.sir, secondWord.sir);
 }
 
-int main() {
-    int lungimeVector;
-    Cuvant *cuvinte = procesareText(&lungimeVector);
-    printf("Vectorul sortat este -------------------------------------\n");
-    qsort(cuvinte, lungimeVector, sizeof(Cuvant), cmp);
-    afisare(cuvinte, &lungimeVector);
-}
+//int main() {
+//    int lungimeVector;
+//    Cuvant *cuvinte = procesareText(&lungimeVector);
+//    printf("Vectorul sortat este -------------------------------------\n");
+//    qsort(cuvinte, lungimeVector, sizeof(Cuvant), cmp);
+//    afisare(cuvinte, &lungimeVector);
+//    free(cuvinte);
+//}
